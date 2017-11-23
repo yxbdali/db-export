@@ -11,12 +11,13 @@ import org.springframework.shell.jline.PromptProvider;
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class DbExportApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DbExportApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DbExportApplication.class, args);
+    }
 
-	@Bean
-	public PromptProvider promptProvider() {
-		return () -> new AttributedString("db_export-shell:>", AttributedStyle.DEFAULT.foreground(AttributedStyle.YELLOW));
-	}
+    @Bean
+    public PromptProvider promptProvider() {
+        return () -> new AttributedString("db_export-shell:>",
+            AttributedStyle.DEFAULT.foreground(AttributedStyle.YELLOW));
+    }
 }

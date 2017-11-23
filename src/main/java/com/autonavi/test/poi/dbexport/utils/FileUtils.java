@@ -1,6 +1,5 @@
 package com.autonavi.test.poi.dbexport.utils;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import java.util.Map;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
@@ -19,7 +17,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public final class FileUtils {
     /**
-     *
      * @param dataMapList
      * @param outFile
      * @param sheetName
@@ -27,7 +24,7 @@ public final class FileUtils {
      */
     public static void createExcelFile(List<Map<String, Object>> dataMapList, String outFile, String sheetName)
         throws IOException {
-        try(XSSFWorkbook wb = new XSSFWorkbook()) {
+        try (XSSFWorkbook wb = new XSSFWorkbook()) {
             Sheet sheet = wb.createSheet(sheetName);
 
             // write header

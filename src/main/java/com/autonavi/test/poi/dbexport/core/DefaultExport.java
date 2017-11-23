@@ -1,6 +1,5 @@
 package com.autonavi.test.poi.dbexport.core;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +23,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultExport implements IExport {
     @Override
-    public void export(String driver, String url, String username, String password, ExportInfo exportInfo, String outputFile)
+    public void export(String driver, String url, String username, String password, ExportInfo exportInfo,
+                       String outputFile)
         throws Exception {
         log.info("Start to data export...");
         DataSource dataSource = DataSourceBuilder.create().driverClassName(driver)
