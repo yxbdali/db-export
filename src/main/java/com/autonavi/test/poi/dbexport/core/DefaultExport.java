@@ -2,6 +2,7 @@ package com.autonavi.test.poi.dbexport.core;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CyclicBarrier;
 
 import javax.sql.DataSource;
 
@@ -41,5 +42,7 @@ public class DefaultExport implements IExport {
         List<Map<String, Object>> dataMapList = jdbcTemplate.queryForList(sql);
         FileUtils.createExcelFile(dataMapList, outputFile, sheet);
         log.info("Export finished!");
+
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(10);
     }
 }
