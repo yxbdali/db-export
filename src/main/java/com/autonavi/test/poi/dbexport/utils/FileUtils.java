@@ -27,31 +27,32 @@ public final class FileUtils {
      */
     public static void createExcelFile(List<Map<String, Object>> dataMapList, String outFile, String sheetName)
         throws IOException {
-        XSSFWorkbook wb = new XSSFWorkbook();
-        Sheet sheet = wb.createSheet(sheetName);
+        try(XSSFWorkbook wb = new XSSFWorkbook()) {
+            Sheet sheet = wb.createSheet(sheetName);
 
-        // write header
-        int row = 0;
-        Map<String, Object> map = dataMapList.get(0);
-        Row headerRow = sheet.createRow(row++);
-        int col = 0;
-        List<String> headerList = new ArrayList<>();
-        for (String header : map.keySet()) {
-            Cell cell = headerRow.createCell(col++);
-            cell.setCellValue(header);
-        }
-
-        for (Map<String, Object> item : dataMapList) {
-            Row dataRow = sheet.createRow(row++);
-            col = 0;
-            for (Object value : item.values()) {
-                Cell cell = dataRow.createCell(col++);
-                cell.setCellValue(value == null ? "" : value.toString());
+            // write header
+            int row = 0;
+            Map<String, Object> map = dataMapList.get(0);
+            Row headerRow = sheet.createRow(row++);
+            int col = 0;
+            List<String> headerList = new ArrayList<>();
+            for (String header : map.keySet()) {
+                Cell cell = headerRow.createCell(col++);
+                cell.setCellValue(header);
             }
-        }
 
-        try (FileOutputStream out = new FileOutputStream(outFile)) {
-            wb.write(out);
+            for (Map<String, Object> item : dataMapList) {
+                Row dataRow = sheet.createRow(row++);
+                col = 0;
+                for (Object value : item.values()) {
+                    Cell cell = dataRow.createCell(col++);
+                    cell.setCellValue(value == null ? "" : value.toString());
+                }
+            }
+
+            try (FileOutputStream out = new FileOutputStream(outFile)) {
+                wb.write(out);
+            }
         }
     }
 }
